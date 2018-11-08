@@ -1,11 +1,12 @@
+#include <sstream>
+
 #include "..\..\SuperLoggingProject\src\Logger.h"
 #include "Cat.h"
 
 int main() {
 
-	Logger* logger = new Logger();
-	logger->setFilter(LoggingLevel::TRACE);
-	logger->addFileLog("resources\\log.txt");
+	Sangu::Logger* logger = new Sangu::Logger();
+	logger->setFilter(Sangu::LoggingLevel::TRACE);
 
 	// Cat logic
 	Cat* cat = new Cat("Piso");
@@ -13,6 +14,6 @@ int main() {
 
 	delete logger;
 	logger = NULL;
-
-	system("PAUSE");
+	
+	system("pause");
 }

@@ -1,27 +1,30 @@
 #include "Logger.h"
 
-Logger::Logger() {
+Sangu::Logger::Logger() {
 }
 
-Logger::Logger(LoggingLevel level) {
+Sangu::Logger::Logger(LoggingLevel level) {
 	this->setFilter(level);
 }
 
-Logger::Logger(LoggingLevel level, std::string filePath) {	
+Sangu::Logger::Logger(std::ostream* ost) {
+	this->setOutputStream(ost);
+}
+
+Sangu::Logger::Logger(LoggingLevel level, std::ostream* ost) {
 	this->setFilter(level);
-	this->addFileLog(filePath);
+	this->setOutputStream(ost);
 }
 
-Logger::Logger(std::string filePath) {
-	this->addFileLog(filePath);
+Sangu::Logger::~Logger() {
+	// Don't call delete on cout!
+	if (this->ost != std::_Ptr_cout) {
+		delete this->ost;
+	}
+	this->ost = NULL;
 }
 
-Logger::~Logger()
-{
-	m_ofs->close();
-}
-
-std::string Logger::levelToString(LoggingLevel level) {
+std::string Sangu::Logger::levelToString(LoggingLevel level) {
 	std::string retValue;
 	switch (level)
 	{
@@ -43,51 +46,48 @@ std::string Logger::levelToString(LoggingLevel level) {
 	return retValue;
 }
 
-void Logger::log(LoggingLevel level, std::string message) {
+void Sangu::Logger::log(LoggingLevel level, std::string message) {
 	if (m_level <= level) {
-		std::cout << "[" << levelToString(level) << "]: " << message << std::endl;
-		if (m_ofs) {
-			(*m_ofs) << "[" << levelToString(level) << "]: " << message << std::endl;			
-		}
+		*ost << "[" << levelToString(level) << "]: " << message << std::endl;
 	}
 }
 
-void Logger::trace(std::string message)
+void Sangu::Logger::trace(std::string message)
 {
 	this->log(LoggingLevel::TRACE, message);
 }
 
-void Logger::debug(std::string message)
+void Sangu::Logger::debug(std::string message)
 {
 	this->log(LoggingLevel::DEBUG, message);
 }
 
-void Logger::info(std::string message)
+void Sangu::Logger::info(std::string message)
 {
 	this->log(LoggingLevel::INFO, message);
 }
 
-void Logger::warn(std::string message)
+void Sangu::Logger::warn(std::string message)
 {
 	this->log(LoggingLevel::WARN, message);
 }
 
-void Logger::error(std::string message)
+void Sangu::Logger::error(std::string message)
 {
 	this->log(LoggingLevel::ERROR, message);
 }
 
-void Logger::fatal(std::string message)
+void Sangu::Logger::fatal(std::string message)
 {
 	this->log(LoggingLevel::FATAL, message);
 }
 
-void Logger::setFilter(LoggingLevel level)
+void Sangu::Logger::setFilter(LoggingLevel level)
 {
 	m_level = level;
 }
 
-void Logger::addFileLog(std::string filePath)
+void Sangu::Logger::setOutputStream(std::ostream* ost)
 {
-	this->m_ofs = new std::ofstream(filePath);
+	this->ost = ost;
 }

@@ -6,27 +6,31 @@
 
 #include "LoggingLevel.h"
 
-class Logger {
-private:
-	LoggingLevel m_level = LoggingLevel::INFO;
-	std::ofstream* m_ofs = NULL;
+namespace Sangu
+{
+	class Logger
+	{
+	private:		
+		std::ostream* ost = std::_Ptr_cout;
+		LoggingLevel m_level = LoggingLevel::INFO;
+		
+		std::string levelToString(LoggingLevel level);
+		void log(LoggingLevel level, std::string message);
+	public:
+		Logger();
+		Logger(LoggingLevel level);
+		Logger(std::ostream* ost);
+		Logger(LoggingLevel level, std::ostream* ost);
+		~Logger();
 
-	std::string levelToString(LoggingLevel level);
-	void log(LoggingLevel level, std::string message);
-public:
-	Logger();
-	Logger(LoggingLevel level);
-	Logger(LoggingLevel level, std::string filePath);
-	Logger(std::string filePath);
-	~Logger();
+		void trace(std::string message);
+		void debug(std::string message);
+		void info(std::string message);
+		void warn(std::string message);
+		void error(std::string message);
+		void fatal(std::string message);
 
-	void trace(std::string message);
-	void debug(std::string message);
-	void info(std::string message);
-	void warn(std::string message);
-	void error(std::string message);
-	void fatal(std::string message);
-
-	void setFilter(LoggingLevel level);
-	void addFileLog(std::string filePath);
-};
+		void setFilter(LoggingLevel level);
+		void setOutputStream(std::ostream* ost);
+	};
+}

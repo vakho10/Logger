@@ -7,7 +7,7 @@
 
 class Cat {
 private:
-	Logger* logger = new Logger(LoggingLevel::TRACE, "resources\\cat_log.txt");
+	Sangu::Logger* logger = new Sangu::Logger(Sangu::LoggingLevel::TRACE);
 
 	std::string m_name;
 	std::string m_sound;
