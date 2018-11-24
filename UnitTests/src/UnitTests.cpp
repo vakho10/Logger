@@ -22,7 +22,8 @@ namespace UnitTests
 		TEST_METHOD(FilterTests)
 		{
 			std::ostringstream* ost = new std::ostringstream();
-			Sangu::Logger logger = Sangu::Logger(Sangu::LoggingLevel::INFO, ost);
+			Sangu::Logger logger = Sangu::Logger(ost);
+			logger.setFilter(Sangu::LoggingLevel::INFO); // Testing this method
 			logger.trace("x");
 			logger.debug("x");
 			logger.info("x");
@@ -34,6 +35,19 @@ namespace UnitTests
 			// Check number of occurrences
 			int numberOfLines = std::count(str.begin(), str.end(), '\n');
 			Assert::AreEqual(4, numberOfLines);
+		}
+
+		TEST_METHOD(OutputStreamTests) {
+			std::ostringstream* ost = new std::ostringstream();
+			Sangu::Logger logger = Sangu::Logger();
+			logger.setOutputStream(ost); // Testing this method
+			logger.info("x");
+			logger.info("x");
+			std::string str = ost->str();
+
+			// Check number of occurrences
+			int numberOfLines = std::count(str.begin(), str.end(), '\n');
+			Assert::AreEqual(2, numberOfLines);
 		}
 
 	};
