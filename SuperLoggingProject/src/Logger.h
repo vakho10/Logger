@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <exception>
 
 #include "LoggingLevel.h"
 
@@ -15,6 +16,7 @@ namespace Sangu
 		LoggingLevel m_level = LoggingLevel::INFO;
 		
 		std::string levelToString(LoggingLevel level);
+				
 		void log(LoggingLevel level, std::string message);
 	public:
 		Logger();

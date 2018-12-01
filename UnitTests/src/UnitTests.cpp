@@ -5,6 +5,7 @@
 
 #include <sstream>
 #include <string>
+#include <functional>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -48,6 +49,35 @@ namespace UnitTests
 			// Check number of occurrences
 			int numberOfLines = std::count(str.begin(), str.end(), '\n');
 			Assert::AreEqual(2, numberOfLines);
+		}
+
+		TEST_METHOD(LogMethodExceptionTest) {
+			std::ostringstream* ost = new std::ostringstream();
+			Sangu::Logger logger = Sangu::Logger(ost);
+			
+			// Expect exception
+			Assert::ExpectException<std::invalid_argument>([&logger] {				
+				logger.info("");
+			});
+
+			// No exception expected
+			logger.info("Some text");
+			Assert::IsFalse(ost->str().empty());
+		}
+
+		TEST_METHOD(SetOutputStreamExceptionTest) {
+			Sangu::Logger logger = Sangu::Logger();
+
+			// Expect exception
+			Assert::ExpectException<std::invalid_argument>([&logger] {
+				logger.setOutputStream(nullptr);
+			});
+
+			// No exception expected
+			std::ostringstream* ost = new std::ostringstream();
+			logger.setOutputStream(ost);
+			logger.info("Some text");
+			Assert::IsFalse(ost->str().empty());
 		}
 
 	};

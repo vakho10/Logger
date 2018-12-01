@@ -47,6 +47,10 @@ std::string Sangu::Logger::levelToString(LoggingLevel level) {
 }
 
 void Sangu::Logger::log(LoggingLevel level, std::string message) {
+	// Check for empty message
+	if (message.empty()) {
+		throw std::invalid_argument("Empty message field!");
+	}
 	if (m_level <= level) {
 		*ost << "[" << levelToString(level) << "]: " << message << std::endl;
 	}
@@ -89,5 +93,8 @@ void Sangu::Logger::setFilter(LoggingLevel level)
 
 void Sangu::Logger::setOutputStream(std::ostream* ost)
 {
+	if (ost == nullptr) {
+		throw std::invalid_argument("Null output stream specified!");
+	}
 	this->ost = ost;
 }
