@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['logger_2ecpp',['Logger.cpp',['../_logger_8cpp.html',1,'']]],
-  ['logger_2eh',['Logger.h',['../_logger_8h.html',1,'']]],
-  ['logginglevel_2eh',['LoggingLevel.h',['../_logging_level_8h.html',1,'']]]
+  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ost',['ost',['../class_sangu_1_1_logger.html#a464315fde4ab277d80438cf3f5dc35b4',1,'Sangu::Logger']]]
+  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
 ];

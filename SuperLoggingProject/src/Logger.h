@@ -11,12 +11,17 @@ namespace Sangu
 {
 	class Logger
 	{
-	private:		
+	private:
 		std::ostream* ost = std::_Ptr_cout;
 		LoggingLevel m_level = LoggingLevel::INFO;
-		
+
 		std::string levelToString(LoggingLevel level);
-				
+
+		/** Logs message according to the logging level.  
+		 * @param level logging level.
+		 * @param message output message.
+		 * @throws invalid_argument if message was emtpy.
+		 */
 		void log(LoggingLevel level, std::string message);
 	public:
 		Logger();

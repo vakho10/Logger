@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['unittests',['UnitTests',['../namespace_unit_tests.html',1,'']]],
-  ['unittests_2ecpp',['UnitTests.cpp',['../_unit_tests_8cpp.html',1,'']]]
+  ['_7elogger',['~Logger',['../class_sangu_1_1_logger.html#ae96e91a84f040d27b739845ec6f4f34f',1,'Sangu::Logger']]]
 ];

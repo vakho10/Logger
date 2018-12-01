@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../_source_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'Source.cpp']]]
+  ['trace',['trace',['../class_sangu_1_1_logger.html#aab5db33aa61d7b3722abacfe54637914',1,'Sangu::Logger']]]
 ];
